@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Te</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases de Amor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #app {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #e73370;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Que me gusta de ti</h1>
+        <p id="phrase">Presiona el botón para ver una frase</p>
+        <button onclick="generatePhrase()">Generar Frase</button>
+    </div>
+
+    <script>
+      const phrases = [
+    "Amo tu sonrisa 😊.",
+    "Eres increíblemente amable 🌟.",
+    "Siempre sabes cómo hacerme reír 😂.",
+    "Tu apoyo incondicional significa el mundo para mí 🤗.",
+    "Eres mi mejor amiga 💖.",
+    "Eres mi confidente 🗝️.",
+    "Eres extremadamente talentosa 🎨.",
+    "Me inspiras cada día 🌅.",
+    "Me haces sentir amado 💓.",
+    "Compartimos sueños y metas 🎯.",
+    "Eres muy trabajadora 💪.",
+    "Eres honesta y directa 🗣️.",
+    "Tu risa ilumina mi día ☀️.",
+    "Siempre sabes qué decir 🗨️.",
+    "Eres apasionada en todo lo que haces 🔥.",
+    "Me haces sentir seguro 🛡️.",
+    "Eres increíblemente hermosa 🌹.",
+    "Eres una persona muy inteligente 🧠.",
+    "Amo nuestras conversaciones profundas 📚.",
+    "Me haces querer ser una mejor persona 🌟.",
+    "Eres muy creativa 🎨.",
+    "Siempre estás ahí cuando te necesito 📞.",
+    "Eres muy comprensiva 🤲.",
+    "Amo cómo te preocupas por los demás 💕.",
+    "Eres mi compañera perfecta de aventuras 🌍.",
+    "Me das paz y tranquilidad 🕊️.",
+    "Eres muy optimista ☀️.",
+    "Tienes una gran ética de trabajo 📈.",
+    "Eres muy valiente 🦁.",
+    "Me encanta tu sentido del humor 😆.",
+    "Eres mi roca 🪨.",
+    "Me motivas a alcanzar mis metas 🎯.",
+    "Tienes una energía contagiosa ⚡.",
+    "Eres muy cariñosa 💗.",
+    "Amo tu voz 🎤.",
+    "Me haces sentir especial 🌟.",
+    "Eres muy generosa 🎁.",
+    "Amo cómo me miras 👀.",
+    "Eres muy perspicaz 🧐.",
+    "Amo nuestros momentos juntos 💑.",
+    "Eres muy paciente ⏳.",
+    "Eres muy leal 🐾.",
+    "Me haces sentir completo 💞.",
+    "Eres una excelente cocinera 🍳.",
+    "Amo tus abrazos 🤗.",
+    "Eres muy apasionada 💘.",
+    "Eres mi refugio 🏡.",
+    "Eres muy considerada 💭.",
+    "Me encanta tu estilo 👗.",
+    "Eres muy fuerte 💪.",
+    "Amo tu espontaneidad 🎉.",
+    "Eres muy flexible 🤸.",
+    "Eres mi compañera de vida 💑.",
+    "Me haces sentir afortunado 🍀.",
+    "Eres muy organizada 📅.",
+    "Amo cómo te preocupas por mí 🥰.",
+    "Eres muy abierta 🌐.",
+    "Eres mi apoyo incondicional 🌠.",
+    "Amo tus historias 📖.",
+    "Eres muy sincera 🗣️.",
+    "Amo cómo haces que cada día sea especial 🌈.",
+    "Eres muy reflexiva 💭.",
+    "Me encanta que eres única 🦄.",
+    "Eres muy sabia 🧙‍♀️.",
+    "Eres muy talentosa 🏆.",
+    "Amo tu dedicación 🎯.",
+    "Eres mi mejor apoyo 👫.",
+    "Eres muy confiable 🔒.",
+    "Amo cómo me haces sentir vivo 🌟.",
+    "Eres muy empática 💞.",
+    "Eres una gran oyente 👂.",
+    "Eres muy detallista 🎨.",
+    "Me haces sentir en casa 🏡.",
+    "Eres muy romántica 🌹.",
+    "Eres muy creativa 🎨.",
+    "Amo tu entusiasmo 🌟.",
+    "Eres muy optimista 🌈.",
+    "Eres mi mayor fan 📣.",
+    "Me encanta cómo ves el mundo 🌍.",
+    "Eres muy honesta 🗣️.",
+    "Amo tu sinceridad 🤍.",
+    "Eres mi fuente de alegría 🌞.",
+    "Eres muy persuasiva 🗣️.",
+    "Eres muy perseverante 🏃‍♀️.",
+    "Eres mi compañera de equipo 👫.",
+    "Me haces sentir importante ⭐.",
+    "Eres muy innovadora 💡.",
+    "Eres mi inspiración 🎨.",
+    "Amo cómo me haces soñar 💭.",
+    "Eres muy justa ⚖️.",
+    "Eres mi mejor aliada 🥇.",
+    "Eres muy observadora 👀.",
+    "Eres mi musa 🎨.",
+    "Eres muy disciplinada 📚.",
+    "Eres mi mayor apoyo 🤝.",
+    "Amo cómo me entiendes 🧠.",
+    "Eres muy afectuosa 🤗.",
+    "Eres mi confidente 🗝️.",
+    "Eres muy cautivadora 🌟.",
+    "Eres mi razón de ser ❤️.",
+    "Amo cómo me haces sentir amado 💓.",
+    "Eres muy intuitiva 🌠.",
+    "Eres mi felicidad 🌟.",
+    "Eres muy resolutiva 🧩.",
+    "Eres mi inspiración diaria 🌅.",
+    "Eres muy práctica 🛠️.",
+    "Amo tu pasión por la vida 🌍.",
+    "Eres muy equilibrada ⚖️.",
+    "Eres mi todo 💞.",
+    "Eres muy elegante 👗.",
+    "Eres mi razón para sonreír 😊.",
+    "Eres muy artística 🎨.",
+    "Eres mi paz 🕊️.",
+    "Eres muy original 🦄.",
+    "Amo tu calidez 🔥.",
+    "Eres muy realista 🌏.",
+    "Eres mi mejor mitad 💑.",
+    "Eres muy objetiva 🎯.",
+    "Eres mi alegría 🌞.",
+    "Eres muy energética ⚡.",
+    "Eres mi fortaleza 🛡️.",
+    "Eres muy madura 🌳.",
+    "Eres mi refugio seguro 🏡.",
+    "Eres muy ingeniosa 💡.",
+    "Eres mi sueño hecho realidad 🌟.",
+    "Eres muy respetuosa 🙏.",
+    "Eres mi sol en días nublados ☀️.",
+    "Eres muy encantadora 🌟.",
+    "Eres mi compañera perfecta 💞.",
+    "Eres muy decidida 💪.",
+    "Eres mi mayor tesoro 💎.",
+    "Eres muy intuitiva 🌠.",
+    "Eres mi razón de vivir 🌅.",
+    "Eres muy confiable 🔒.",
+    "Eres mi mejor amiga 💖.",
+    "Eres muy cuidadosa 🌼.",
+    "Eres mi mundo 🌍.",
+    "Eres muy entusiasta 🌟.",
+    "Eres mi compañera de aventuras 🗺️.",
+    "Eres muy reflexiva 💭.",
+    "Eres mi amor eterno 💘.",
+    "Eres muy soñadora 🌜.",
+    "Eres mi alegría constante 🌞.",
+    "Eres muy analítica 🧠.",
+    "Eres mi luz en la oscuridad 🌟.",
+    "Eres muy atenta 💐.",
+    "Eres mi apoyo incondicional 🤝.",
+    "Eres muy vivaz 🌟.",
+    "Eres mi razón para luchar 💪.",
+    "Eres muy compasiva 💞.",
+    "Eres mi vida 🌍.",
+    "Eres muy amable 🌸.",
+    "Eres mi confidente fiel 🗝️.",
+    "Eres muy observadora 👀.",
+    "Eres mi esperanza 🌈.",
+    "Eres muy sensible 💗.",
+    "Eres mi felicidad diaria 🌞.",
+    "Eres muy abierta de mente 🌐.",
+    "Eres mi compañera de vida 💑.",
+    "Eres muy constante 🔄.",
+    "Eres mi razón de ser feliz 😊.",
+    "Eres muy paciente ⏳.",
+    "Eres mi fuente de amor 💓.",
+    "Eres muy sincera 🤍.",
+    "Eres mi inspiración constante 🎨.",
+    "Eres muy creativa 🎨.",
+    "Eres mi amor 💞.",
+    "Eres muy organizada 📅.",
+    "Eres mi todo 🌍.",
+    "Eres muy dedicada 🎯.",
+    "Eres mi razón de alegría 🌟.",
+    "Eres muy comprensiva 🤲.",
+    "Eres mi amor verdadero 💘.",
+    "Eres muy generosa 🎁.",
+    "Eres mi razón de sonreír 😊.",
+    "Eres muy atenta 💐.",
+    "Eres mi refugio 🏡.",
+    "Eres muy amorosa 💗.",
+    "Eres mi compañera ideal 🌟.",
+    "Eres muy perspicaz 🧐.",
+    "Eres mi fuerza 🛡️.",
+    "Eres muy encantadora 🌟.",
+    "Eres mi razón de vivir 🌅.",
+    "Eres muy talentosa 🏆.",
+    "Eres mi alegría 🌞.",
+    "Eres muy auténtica 🎨.",
+    "Eres mi inspiración 🎨.",
+    "Eres muy carismática ✨.",
+    "Eres mi motivación 💪.",
+    "Eres muy apasionada 🔥.",
+    "Eres mi felicidad 🌞.",
+    "Eres muy dedicada 🎯.",
+    "Eres mi refugio 🏡.",
+    "Eres muy sensible 💗.",
+    "Eres mi sol ☀️.",
+    "Eres muy persuasiva 🗣️.",
+    "Eres mi razón de ser ❤️.",
+    "Eres muy honesta 🗣️.",
+    "Eres mi musa 🎨.",
+    "Eres muy afectuosa 🤗.",
+    "Eres mi todo 🌍.",
+    "Eres muy realista 🌏.",
+    "Eres mi amor 💞.",
+    "Eres muy intuitiva 🌠.",
+    "Eres mi razón de ser feliz 😊.",
+    "Eres muy confiable 🔒.",
+    "Eres mi compañera 💑.",
+    "Eres muy observadora 👀.",
+    "Eres mi felicidad 🌞.",
+    "Eres muy paciente ⏳.",
+    "Eres mi razón de vivir 🌅.",
+    "Eres muy comprensiva 🤲.",
+    "Eres mi fuente de amor 💓.",
+    "Eres muy amable 🌸.",
+    "Eres mi inspiración 🎨.",
+    "Eres muy generosa 🎁.",
+    "Eres mi sol en días nublados ☀️.",
+    "Eres muy sincera 🗣️.",
+    "Eres mi razón de sonreír 😊."
+];
+
+
+        function generatePhrase() {
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            const phrase = phrases[randomIndex];
+            document.getElementById('phrase').innerText = phrase;
+        }
+    </script>
+</body>
+</html>
+
